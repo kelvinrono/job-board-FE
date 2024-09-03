@@ -4,9 +4,13 @@ import * as Yup from 'yup';
 import InputField from './InputField';
 import Button from './Button';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 function RegistrationForm() {
+
+    const navigate = useNavigate();
+
   const initialValues = {
     name: '',
     email: '',
@@ -32,8 +36,10 @@ function RegistrationForm() {
       const response = await axios.post('http://localhost:5000/api/auth/register', values);
       console.log(response);
       resetForm();
+      navigate('/login');
+
     } catch (error) {
-      console.error(error);
+      console.error("response error", error.message);
     } finally {
       setSubmitting(false);
     }
@@ -41,7 +47,7 @@ function RegistrationForm() {
 
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-      {({ isSubmitting, errors, touched, handleChange, handleBlur, values }) => ( // Corrected here
+      {({ isSubmitting, errors, touched, handleChange, handleBlur, values }) => (
         <Form>
           <InputField
             label="Name"

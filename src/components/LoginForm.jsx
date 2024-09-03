@@ -4,26 +4,28 @@ import InputField from './InputField'
 import Button from './Button'
 import axios from 'axios'
 import * as Yup from 'yup'
+import { toast } from 'react-toastify'
 
 function LoginForm() {
 
     const initialValues = {
-      username: '',
+      email: '',
       password: '',
     }
     const validationSchema = Yup.object({
-        username: Yup.string().email("Invalid Email format").required('Username is required'),
+        email: Yup.string().email("Invalid Email format").required('Username is required'),
         password: Yup.string().required('Password is required'),
     })
-    const handleSubmit = async () =>{
+    const handleSubmit = async (values, {setSubmitting, resetForm}) =>{
         try{
-            const response = await axios.post('https://localhost:5000/api/auth/login', values)
-            console.log("login successful",response.data)
+            const response = await axios.post('http://localhost:5000/api/auth/login', values);            console.log("login successful",response.data)
             resetForm();
+            toast.success(response.data.message);
 
         }
         catch(err){
             console.log(err)
+            toast.warn(err.response.data.message)
         }
         finally{
             setSubmitting(false);
