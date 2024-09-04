@@ -5,8 +5,11 @@ import Button from './Button'
 import axios from 'axios'
 import * as Yup from 'yup'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 function LoginForm() {
+
+    const navigate = useNavigate()
 
     const initialValues = {
       email: '',
@@ -21,6 +24,7 @@ function LoginForm() {
             const response = await axios.post('http://localhost:5000/api/auth/login', values);            console.log("login successful",response.data)
             resetForm();
             toast.success(response.data.message);
+            navigate('/')
 
         }
         catch(err){

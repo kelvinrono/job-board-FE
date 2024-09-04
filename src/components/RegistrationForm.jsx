@@ -6,10 +6,8 @@ import Button from './Button';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-
 function RegistrationForm() {
-
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const initialValues = {
     name: '',
@@ -37,7 +35,6 @@ function RegistrationForm() {
       console.log(response);
       resetForm();
       navigate('/login');
-
     } catch (error) {
       console.error("response error", error.message);
     } finally {
@@ -46,7 +43,11 @@ function RegistrationForm() {
   };
 
   return (
-    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+    <Formik 
+      initialValues={initialValues} 
+      validationSchema={validationSchema} 
+      onSubmit={handleSubmit}
+    >
       {({ isSubmitting, errors, touched, handleChange, handleBlur, values }) => (
         <Form>
           <InputField
@@ -56,7 +57,7 @@ function RegistrationForm() {
             value={values.name}
             onChange={handleChange}
             onBlur={handleBlur}
-            error={errors.name && touched.name}
+            error={touched.name && errors.name ? errors.name : ''}
           />
           <InputField
             label="Email"
@@ -65,7 +66,7 @@ function RegistrationForm() {
             value={values.email}
             onChange={handleChange}
             onBlur={handleBlur}
-            error={errors.email && touched.email}
+            error={touched.email && errors.email ? errors.email : ''}
           />
           <InputField
             label="Password"
@@ -74,7 +75,7 @@ function RegistrationForm() {
             value={values.password}
             onChange={handleChange}
             onBlur={handleBlur}
-            error={errors.password && touched.password}
+            error={touched.password && errors.password ? errors.password : ''}
           />
           <InputField
             label="Confirm Password"
@@ -83,9 +84,9 @@ function RegistrationForm() {
             value={values.confirmPassword}
             onChange={handleChange}
             onBlur={handleBlur}
-            error={errors.confirmPassword && touched.confirmPassword}
+            error={touched.confirmPassword && errors.confirmPassword ? errors.confirmPassword : ''}
           />
-          <Button type="submit" disabled={isSubmitting} label="Register"> Register </Button>
+          <Button type="submit" disabled={isSubmitting} label="Register">Register</Button>
         </Form>
       )}
     </Formik>
