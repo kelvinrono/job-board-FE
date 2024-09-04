@@ -1,0 +1,36 @@
+.job-table-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem;
+  }
+  
+  .job-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Arial, sans-serif';
+  }
+  
+  .job-table th, .job-table td {
+    text-align: left;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  
+  .job-table thead {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .job-table tbody tr {
+    border-bottom: 1px solid #e0e0e0; 
+}
+  
+  .job-table tbody tr:nth-child(even) {
+    background-color: var(--secondary-color); 
+  }
+  
+  .job-table tbody tr:hover {
+    background-color: var(--background-color);
+    transition: background-color 0.3s ease;
+  }
+  

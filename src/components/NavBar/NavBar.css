@@ -1,0 +1,40 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--primary-color);
+  }
+  
+  .navbar__logo {
+    height: 3rem; /* Adjust the size of your logo */
+  }
+  
+  .navbar__center {
+    display: flex;
+    gap: 2rem; /* Space between links */
+  }
+  
+  .navbar__link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .navbar__link:hover {
+    color: var(--accent-color);
+  }
+  
+  .navbar__right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar__profile {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .navbar__left p{
+    color: #fff;
+  }
